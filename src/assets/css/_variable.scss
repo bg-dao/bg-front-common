@@ -1,0 +1,64 @@
+:root {
+  --lb-black: #000;
+  --lb-white: #fff;
+  --lb-base-color1: var(--lb-black);
+  --lb-base-color2: #EEEEEE;
+  --lb-base-color3: rgba(0,0,0,0.45);
+  --lb-base-color4: rgba(0,0,0,0.65);
+  --lb-base-color5: rgba(0,0,0,0.85);
+  --lb-bg-color: #f5f6fa;
+  
+  --lb-red: #F45C5A;
+  --lb-blue: #1890FF;
+  --lb-orange: #F7AF4C;
+  --lb-green: #1BCC8C;
+  
+  --lb-primary-color: var(--lb-blue);
+  --lb-success-color: var(--lb-green);
+  --lb-danger-color: var(--lb-red);
+  --lb-warning-color: var(--lb-orange);
+  
+  --lb-font-size-xs: 10px;
+  --lb-font-size-sm: 12px;
+  --lb-font-size-md: 14px;
+  --lb-font-size-lg: 16px;
+  
+  --lb-base-font-family: "Noto Sans", "Noto Sans SC", sans-serif;
+  
+  --lb-regular-shadow: 0px 0px 4px 0px rgba(0,0,0,0.25);
+
+  --lb-border-width-base: 1px;
+  --lb-border-radius-sm: 2px;
+  --lb-border-radius-md: 4px;
+  --lb-border-radius-lg: 8px;
+  --lb-border-radius-max: 999px;
+  
+}
+
+
+$fontS0: var(--lb-font-size-xs);
+$fontS1: var(--lb-font-size-sm);
+$fontS2: var(--lb-font-size-md);
+$fontS3: var(--lb-font-size-lg);
+
+$font-size-xs: var(--lb-font-size-xs);
+$font-size-sm: var(--lb-font-size-sm);
+$font-size-md: var(--lb-font-size-md);
+$font-size-lg: var(--lb-font-size-lg);
+
+$color0: var(--lb-white);
+$color1: var(--lb-base-color1);
+$color2: var(--lb-base-color2);
+$color3: var(--lb-base-color3);
+$color4: var(--lb-base-color4);
+$color5: var(--lb-base-color5);
+$colorB: var(--lb-blue);
+
+$bgColor: var(--lb-bg-color);
+
+$radius0: var(--lb-border-radius-sm);
+$radius1: var(--lb-border-radius-md);
+$radius2: var(--lb-border-radius-lg);
+
+
+$shadow: var(--lb-regular-shadow);

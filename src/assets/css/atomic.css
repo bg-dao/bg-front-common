@@ -1,0 +1,82 @@
+.curPoint {
+  cursor: pointer;
+}
+
+.wPre-wrap {
+  white-space: pre-wrap;
+}
+
+.mart-15 {
+  margin-top: 15px;
+}
+
+/* prettier-ignore */
+.m-mart-32 {
+  margin-top: 32PX;
+}
+
+.marb-16 {
+  margin-bottom: 16px;
+}
+
+.marb-20 {
+  margin-bottom: 20px;
+}
+
+.marb-24 {
+  margin-bottom: 24px;
+}
+
+/* prettier-ignore */
+.m-marb-24 {
+  margin-bottom: 24PX;
+}
+
+/* prettier-ignore */
+.m-marb-8 {
+  margin-bottom: 8PX;
+}
+
+/* prettier-ignore */
+.m-marb-16 {
+  margin-bottom: 16PX;
+}
+
+/* prettier-ignore */
+.m-marb-32 {
+  margin-bottom: 32PX;
+}
+
+
+.marb-40 {
+  margin-bottom: 40px;
+}
+
+.w-100 {
+  width: 100%;
+}
+
+.w-50 {
+  width: 50%;
+}
+
+.w-60 {
+  width: 60%;
+}
+
+.w-40 {
+  width: 40%;
+}
+
+.fontb {
+  font-weight: bold;
+}
+
+.color-fff {
+  color: #fff;
+}
+
+/* prettier-ignore */
+.m-fontS-32 {
+  font-size: 32PX;
+}
