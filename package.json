@@ -1,11 +1,12 @@
 {
-  "name": "ss-front-end-bc",
+  "name": "bg-web3-vue-cli",
   "private": true,
   "version": "0.0.0",
   "type": "module",
   "scripts": {
     "dev": "vite --mode development",
     "build:dev": "vite build --mode development",
+    "build:test": "vite build --mode test",
     "build": "vite build --mode production",
     "preview": "vite preview --mode development"
   },
@@ -13,16 +14,15 @@
     "axios": "^0.27.2",
     "echarts": "^5.3.3",
     "pinia": "^2.0.16",
-    "three": "^0.144.0",
-    "vant": "^3.5.4",
+    "vant": "^4.1.1",
     "vue": "^3.2.37",
     "vue-router": "^4.1.2"
   },
   "devDependencies": {
-    "@vitejs/plugin-vue": "^3.0.0",
+    "@vitejs/plugin-vue": "^4.1.0",
     "postcss-px-to-viewport": "^1.1.1",
     "sass": "^1.54.0",
-    "unplugin-vue-components": "^0.22.3",
-    "vite": "^3.0.0"
+    "unplugin-vue-components": "^0.24.1",
+    "vite": "^4.2.1"
   }
 }
