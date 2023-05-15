@@ -47,7 +47,6 @@
   margin-bottom: 32PX;
 }
 
-
 .marb-40 {
   margin-bottom: 40px;
 }
@@ -79,4 +78,8 @@
 /* prettier-ignore */
 .m-fontS-32 {
   font-size: 32PX;
+}
+
+div {
+  background-size: 100% 100%;
 }
