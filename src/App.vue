@@ -5,6 +5,8 @@
 <script>
 import { ref, getCurrentInstance, watchEffect, watch, computed, onBeforeMount, onBeforeUnmount, onMounted } from "vue"
 import { useAppStore } from "@/stores/app.js"
+import bus from "@/utils/eventbus"
+import Cookies from "@/utils/cookie.js"
 export default {
   components: {},
   setup() {
@@ -26,6 +28,12 @@ export default {
     onBeforeMount(() => {
       checkMobile()
       window.addEventListener("resize", checkMobile)
+
+      bus.on("removeUserInfo", () => {
+        appStore.$patch((state) => {
+          state.userInfo = null
+        })
+      })
     })
     onMounted(() => {
       // setTimeout(() => {

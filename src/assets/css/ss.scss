@@ -92,7 +92,7 @@ body:before {
   top: 0;
   left: 0;
   // background: #151C34;
-  background: $bgColor;
+  background: #131322;
 }
 
 .copyTextArea {
@@ -102,4 +102,110 @@ body:before {
   top: 0;
   left: 0;
   z-index: -1;
+}
+
+
+
+.van-overlay {
+  z-index: 100;
+}
+
+.van-popup {
+  background: transparent;
+}
+
+.van-toast {
+  background: var(--van-toast-background);
+}
+
+.toast-web3 {
+  z-index: 200001 !important;
+  width: fit-content;
+  max-width: 400px;
+  min-width: 80px;
+  // background-image: url('@/assets/img/common/toasBG.png');
+  background-size: 100% 100%;
+  // min-height: 200px;
+  font-weight: bold !important;
+}
+
+.toast-index {
+  z-index: 200001 !important;
+  width: fit-content;
+  max-width: 400px;
+  min-width: 80px;
+  position: fixed;
+  top: 350px;
+  // left: calc((100vw - 240px - 1000px) / 2 + 240px + 500px);
+  left: 150px;
+  background-size: 100% 100%;
+  font-weight: bold !important;
+}
+
+@media (max-width: 750px) {
+  /* 在移动端的样式 */
+  .toast-index {
+    top: 30vh;
+    /* 移动端特定样式 */
+    left: 0;
+  }
+}
+
+div {
+  &::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+    cursor: pointer;
+  }
+    
+  &::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+    border-radius: 10px;
+    cursor: pointer;
+  }
+    
+  &::-webkit-scrollbar-thumb {
+    border-radius: 10px;
+    -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+    background-color: #555;
+    cursor: pointer;
+  }
+    
+  &::-webkit-scrollbar-corner {
+    background: rgba(0, 0, 0, 0);
+  }
+}
+
+@media (max-width: 750px) {
+  div {
+    &::-webkit-scrollbar {
+      width: 4px;
+      height: 4px;
+      cursor: pointer;
+    }
+      
+    &::-webkit-scrollbar-track {
+      -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+      // border-radius: 10px;
+      cursor: pointer;
+    }
+      
+    &::-webkit-scrollbar-thumb {
+      // border-radius: 10px;
+      -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+      background-color: #555;
+      cursor: pointer;
+    }
+      
+    &::-webkit-scrollbar-corner {
+      background: rgba(0, 0, 0, 0);
+    }
+  }
+}
+
+:root {
+  --zjg-pc-leftbar-width: 270px;
+  --zjg-m-bottombar-height: 0px;
+  --safe-area-inset-bottom: constant(safe-area-inset-bottom);
+  --safe-area-inset-bottom: env(safe-area-inset-bottom);
 }

@@ -2,15 +2,18 @@ import { createApp } from "vue"
 import { createPinia } from "pinia"
 import "vant/es/toast/style"
 import "./assets/css/flex.css"
+import "./assets/css/github-markdown.css"
+import "./assets/css/highlight.css"
 import "./assets/css/atomic.css"
+import "./assets/css/safari.css"
 import "./assets/css/ss.scss"
 // import "./assets/css/load.css"
 import App from "@/App.vue"
 import router from "@/router"
 
-import { formatNumber, formatHash, copyText } from "@/utils/number.js"
+import { formatNumber, formatNumber2, formatHash, copyText, getWEUnit, toFixed, getWEUnit2 } from "@/utils/number.js"
 import request from "@/utils/request.js"
-import { Toast } from "vant"
+import { Toast, Overlay, Popup, showToast } from "vant"
 import directives from "./directives" // 全局指令
 
 // import { ElLoading } from "element-plus"
@@ -21,9 +24,13 @@ const app = createApp(App)
 //配置全局变量
 app.config.globalProperties.$http = request
 app.config.globalProperties.$formatNumber = formatNumber
+app.config.globalProperties.$formatNumber2 = formatNumber2
+app.config.globalProperties.toFixed = toFixed
 app.config.globalProperties.$formatHash = formatHash
-app.config.globalProperties.$showToast = Toast
-app.config.globalProperties.$toast = Toast
+app.config.globalProperties.$getWEUnit = getWEUnit
+app.config.globalProperties.$getWEUnit2 = getWEUnit2
+app.config.globalProperties.$showToast = showToast
+app.config.globalProperties.$toast = showToast
 app.config.globalProperties.$copyText = copyText
 
 // 注册全局指令
@@ -34,6 +41,8 @@ for (const i in directives) {
 app.use(pinia)
 app.use(router)
 app.use(Toast)
+app.use(Overlay)
+app.use(Popup)
 app.mount("#app")
 
 Date.prototype.format = function (format) {
@@ -52,6 +61,16 @@ Date.prototype.format = function (format) {
 }
 
 app.config.globalProperties.$formatTime = (time) => {
+  if (!time) return "-"
+  return new Date(time).format("yyyy-MM-dd")
+}
+
+app.config.globalProperties.$formatTimeDS = (time) => {
+  if (!time) return "-"
+  return new Date(time).format("yyyy-MM-dd hh:mm")
+}
+
+app.config.globalProperties.$formatTimeFull = (time) => {
   if (!time) return "-"
   return new Date(time).format("yyyy-MM-dd hh:mm:ss")
 }

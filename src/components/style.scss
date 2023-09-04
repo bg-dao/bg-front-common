@@ -1,0 +1,121 @@
+.markdown-body {
+  background-color: transparent;
+  font-size: inherit;
+}
+.markdown-body p {
+  white-space: pre-wrap;
+  line-height: 1.8;
+}
+.markdown-body ol {
+  list-style-type: decimal;
+}
+.markdown-body ul {
+  list-style-type: disc;
+  line-height: 1.8;
+}
+.markdown-body li {
+  line-height: 1.8;
+}
+.markdown-body pre code,
+.markdown-body pre tt {
+  line-height: 1.65;
+}
+.markdown-body .highlight pre,
+.markdown-body pre {
+  background-color: #fff;
+}
+.markdown-body code.hljs {
+  padding: 0;
+}
+.markdown-body .code-block-wrapper {
+  position: relative;
+  padding: 26px 24px;
+  padding-top: calc(40px + 26px);
+  max-width: 800px;
+  background: #17191B;
+  border-radius: 12px;
+  font-size: 14px;
+}
+.markdown-body .code-block-header {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 100%;
+  max-width: 800px;
+  height: 40px;
+  background: #1F2225;
+  border-radius: 12px 12px 0px 0px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: #b3b3b3;
+}
+
+@media screen and (max-width: 1200px) {
+  .markdown-body .code-block-header {
+    max-width: 100% !important;
+  }
+  .markdown-body .code-block-wrapper {
+    max-width: 100% !important;
+  }
+  .markdown-body .hljs {
+    word-wrap: normal;
+    -webkit-hyphens: none;
+    hyphens: none;
+    line-height: 1.5;
+    tab-size: 4;
+    text-align: left;
+    white-space: pre;
+    word-break: normal;
+    word-spacing: normal;
+    display: block;
+    overflow-x: auto;
+  }
+}
+
+.markdown-body {
+  font-size: 16px;
+}
+.markdown-body .code-block-wrapper {
+  font-size: 15.6px;
+}
+
+@media screen and (max-width: 1200px) {
+  .markdown-body {
+    font-size: 14px !important;
+  }
+  .code-block-wrapper {
+    font-size: 14px !important;
+  }
+}
+
+.markdown-body .code-block-header__lang {
+  margin-left: 24px;
+}
+.markdown-body .code-block-header__copy {
+  cursor: pointer;
+  margin-right: 24px;
+  user-select: none;
+  font-size: 14px;
+  font-weight: 500;
+  color: #EFEFFC;
+}
+.markdown-body .code-block-header__copy:hover {
+  color: #6967FF;
+}
+@media screen and (max-width: 1200px) {
+  .markdown-body .code-block-header__copy:visited {
+    color: none;
+  }
+  .markdown-body .code-block-header__copy:hover {
+    color: none;
+  }
+  .markdown-body .code-block-header__copy:active {
+    color: none;
+  }
+}
+
+html.dark .highlight pre,
+html.dark pre {
+  background-color: #282c34;
+}

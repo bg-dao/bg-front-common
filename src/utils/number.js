@@ -21,6 +21,103 @@ export function formatNumber(num) {
   // return ('' + num).replace(/(\d)(?=(\d{3})+\.)/g, '$1,');
 }
 
+// 格式化千分位
+export function formatNumber2(num) {
+  // console.log(num, 'num');
+  if (isNaN(num)) {
+    return 0
+  }
+  // num = String(num)
+  // let length = ("" + num).split(".").length
+  // let long = 0
+  // if (length > 1) {
+  //   long = ("" + num).split(".")[1].length
+  // }
+  let long = 0
+  num = Math.abs(parseFloat(num))
+  if (num < 1) long = 4
+  else long = 2
+  // console.log(), "num");
+  // 要用String 不然会在安卓的某个机子错误错误
+  let fo = parseFloat(num).toLocaleString("en", { minimumFractionDigits: long })
+  if (!fo) fo = String(parseFloat(num)).toLocaleString("en", { minimumFractionDigits: long })
+  // return parseFloat(num).toLocaleString('en', { minimumFractionDigits: long });
+  return fo
+  // return ('' + num).replace(/(\d{1,3})(?=(\d{3})+(?:$|\.))/g, '$1,');
+  // return ('' + num).replace(/(?<=(^|\s)\d+)(?=(\d{3})+\b)/g, ',');
+  // return ('' + num).replace(/(\d)(?=(\d{3})+\.)/g, '$1,');
+}
+
+// 万、亿
+export function getWEUnit(num, decimal = 4) {
+  num = parseFloat(num)
+  if (isNaN(num)) {
+    return 0
+  }
+  let isMin = ""
+  if (num < 0) {
+    isMin = "-"
+    num = Math.abs(num)
+  }
+  if (num >= 1000000000000) {
+    return isMin + formatNumber(toFixed(num / 1000000000000, 2)) + "万亿"
+  } else if (num >= 100000000) {
+    return isMin + formatNumber(toFixed(num / 100000000, 2)) + "亿"
+  } else if (num >= 10000) {
+    return isMin + formatNumber(toFixed(num / 10000, 2)) + "万"
+  } else if (num < 1) {
+    return isMin + formatNumber(toFixed(num, decimal))
+  } else {
+    return isMin + formatNumber(toFixed(num, 2))
+  }
+}
+
+export function getWEUnit2(num, decimal = 4) {
+  num = parseFloat(num)
+  if (isNaN(num)) {
+    return 0
+  }
+  let isMin = "+$"
+  if (num < 0) {
+    isMin = "-$"
+    num = Math.abs(num)
+  }
+  if (num >= 1000000000000) {
+    return isMin + formatNumber(toFixed(num / 1000000000000, 2)) + "万亿"
+  } else if (num >= 100000000) {
+    return isMin + formatNumber(toFixed(num / 100000000, 2)) + "亿"
+  } else if (num >= 10000) {
+    return isMin + formatNumber(toFixed(num / 10000, 2)) + "万"
+  } else if (num < 1) {
+    return isMin + formatNumber(toFixed(num, decimal))
+  } else {
+    return isMin + formatNumber(toFixed(num, 2))
+  }
+}
+
+export function getWEUnit3(num, decimal = 0) {
+  num = parseFloat(num)
+  if (isNaN(num)) {
+    return 0
+  }
+  let isMin = ""
+  if (num < 0) {
+    isMin = "-"
+    num = Math.abs(num)
+  }
+  if (num >= 1000000000000) {
+    return isMin + formatNumber(toFixed(num / 1000000000000, decimal)) + "万亿"
+  } else if (num >= 100000000) {
+    return isMin + formatNumber(toFixed(num / 100000000, decimal)) + "亿"
+  } else if (num >= 10000) {
+    return isMin + formatNumber(toFixed(num / 10000, decimal)) + "万"
+  } else if (num < 1) {
+    return isMin + formatNumber(toFixed(num, decimal))
+  } else {
+    return isMin + formatNumber(toFixed(num, decimal))
+  }
+}
+
 // KMB
 export function getKMBUnit(num, decimal = 2) {
   if (num >= 1000000000) {
@@ -77,22 +174,23 @@ export function getFullNum(num) {
 }
 
 // formatHash
-export function formatHash(str, len = 12) {
+export function formatHash(str, len = 6) {
   if (!str || checkType(str) != "String") return ""
   return str.substr(0, len) + "..." + str.substr(str.length - len, str.length - 1)
 }
 
-import { Toast } from "vant"
+import { showToast } from "vant"
 export function copyText(text) {
   // console.log("navigator.clipboard.writeText is ", navigator?.clipboard?.writeText)
   if (navigator.clipboard && window.isSecureContext) {
     // navigator clipboard 向剪贴板写文本
     navigator.clipboard.writeText(text)
-    Toast({
+    showToast({
+      type: "success",
       message: "复制成功",
-      className: "ss-clipboard",
-      duration: 2000,
-      // duration: 2000 * 1000000,
+      icon: new URL("@/assets/img/common/icon_success.png", import.meta.url).href,
+      className: "toast-web3",
+      duration: 1000,
       closeOnClick: true,
     })
     // return navigator.clipboard.writeText(text)
@@ -109,17 +207,21 @@ export function copyText(text) {
     textArea.focus()
     textArea.select()
     if (document.execCommand("copy")) {
-      Toast({
+      showToast({
+        type: "success",
         message: "复制成功",
-        className: "ss-clipboard",
-        duration: 2000,
+        icon: new URL("@/assets/img/common/icon_success.png", import.meta.url).href,
+        className: "toast-web3",
+        duration: 1000,
         closeOnClick: true,
       })
     } else {
-      Toast({
+      showToast({
+        type: "fail",
         message: "复制失败",
-        className: "ss-clipboard",
-        duration: 2000,
+        icon: new URL("@/assets/img/common/icon_fail.png", import.meta.url).href,
+        className: "toast-web3",
+        duration: 1000,
         closeOnClick: true,
       })
     }

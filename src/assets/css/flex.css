@@ -12,6 +12,7 @@ html,
 body {
   margin: 0;
   padding: 0;
+  background: #131322;
 }
 
 img {
@@ -139,6 +140,13 @@ img {
   text-overflow: ellipsis;
   display: -webkit-box;
   -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+}
+.no-wrap-10 {
+  overflow: hidden !important;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 10;
   -webkit-box-orient: vertical;
 }
 

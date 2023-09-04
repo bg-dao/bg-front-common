@@ -3,8 +3,12 @@ import axios from "axios"
 // import {
 //   Loading
 // } from '../util/utils.js';
-
+import Cookies from "@/utils/cookie.js"
 // import Router from "@/router/index"
+import { showToast } from "vant"
+import bus from "@/utils/eventbus"
+// import { useAppStore } from "@/stores/app"
+// const appStore = useAppStore()
 const pendingMap = new Map()
 // var loading = null;
 export default function (config, options) {
@@ -17,50 +21,20 @@ export default function (config, options) {
   // if (options && options.messageSuccessStatus == false) messageSuccessStatus = false
   // //判断是否展示未格式化的数据 需要配置则在增加{rawData:true} 默认false
   // let rawData = options?.rawData || false
+  let token = Cookies.get("wy_token")
 
+  let headers = {
+    // 'Content-Type': 'application/x-www-form-urlencoded',
+    // 'Content-Type': 'multipart/form-data;',
+    // "Content-Type": "application/json",
+    "Content-Type": "application/json;charset=UTF-8",
+  }
+  if (token) headers["Authorization"] = `Bearer ${token}`
   const service = axios.create({
     // baseURL: '', // 设置统一的请求前缀
-    baseURL: import.meta.env.VITE_APP_WEB_URL ? import.meta.env.VITE_APP_WEB_URL : "http://192.168.11.251:30039", // 设置统一的请求前缀
-    timeout: 15000, // 设置统一的超时时长
-    headers: {
-      // 'Content-Type': 'application/x-www-form-urlencoded',
-      // 'Content-Type': 'multipart/form-data;',
-      // "Content-Type": "application/json",
-      'Content-Type': 'application/json;charset=UTF-8',
-    },
-    transformRequest: [
-      function (data, headers) {
-        // 对 data 进行任意转换处理
-        return JSON.stringify(data)
-        // return data
-        // return qs.parse(data)
-      },
-    ],
-
-    // `transformResponse` 在传递给 then/catch 前，允许修改响应数据
-    transformResponse: [
-      (data) => {
-        // 对 data 进行任意转换处理
-        let res = JSON.parse(data) //返回数据类型转换
-        // console.log(res, "transformResponse-res");
-        // if (res?.code == 200) {
-        //   messageSuccessStatus && messageStatus && res.msg && message.success(res.msg)
-        // } else if (res?.code == 500 || res?.code == 400) {
-        //   messageStatus && res.msg && message.error(res.msg)
-        // }
-        // else {
-        //     !messageStatus || message.warning(res.message)
-        // }
-
-        return data
-      },
-    ],
-    // `paramsSerializer` 是一个负责 `params` 序列化的函数
-    // (e.g. https://www.npmjs.com/package/qs, http://api.jquery.com/jquery.param/)
-    // paramsSerializer: function (params) {
-    //     return qs.stringify(params, { arrayFormat: 'brackets' })
-    // },
-    // `withCredentials` 表示跨域请求时是否需要使用凭证
+    baseURL: import.meta.env.VITE_APP_WEB_URL ? import.meta.env.VITE_APP_WEB_URL : "https://fin-api.bytego123.com/prod", // 设置统一的请求前缀
+    timeout: 100 * 1000, // 设置统一的超时时长
+    headers,
     withCredentials: false, // default
   })
 
@@ -88,14 +62,59 @@ export default function (config, options) {
       //  loading = null;
       // }
 
-      let data = JSON.parse(response.data)
+      // let data = JSON.parse(response.data)
 
       // if (data.code == 200) { //如果返回成功则返回数据 错误只能拿到null
       //     return rawData ? response : data;
       // } else {
       //     return null;
       // }
-      return data
+      // return data
+      // console.log(response,"is response");
+
+      if (response.data.code === 2) {
+        // if (document?.body?.clientWidth > 1200) {
+        showToast({
+          duration: 2000,
+          message: response?.data?.message,
+          // message: res.message,
+          type: "fail",
+          icon: new URL("@/assets/img/common/icon_fail.png", import.meta.url).href,
+          className: "toast-web3",
+        })
+        // }
+
+        // appStore.$patch((state) => {
+        //   state.userInfo = null
+        //   Cookies.remove("wy_userInfo")
+        // })
+
+        Cookies.remove("wy_userDid")
+
+        Cookies.remove("wy_token")
+        Cookies.remove("wy_code")
+        Cookies.remove("wy_userInfo")
+        bus.emit("removeUserInfo")
+
+        window.location.href = window.location.origin + "/#/mine"
+
+        // router.push('/mine')
+
+        // 这里如果要设置弹窗，可以设置bus总线，bus.emit，用不了pinia
+        // appStore.$patch((state) => {
+        //   state.loginInfoShow = true
+        // })
+      } else if (response.data.code !== 0) {
+        showToast({
+          duration: 2000,
+          message: response?.data?.message,
+          // message: res.message,
+          type: "fail",
+          icon: new URL("@/assets/img/common/icon_fail.png", import.meta.url).href,
+          className: "toast-web3",
+        })
+      }
+      return response.data
     },
     (error) => {
       //返回请求的时候关闭loading
