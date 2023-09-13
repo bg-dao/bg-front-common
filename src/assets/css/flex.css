@@ -12,7 +12,7 @@ html,
 body {
   margin: 0;
   padding: 0;
-  background: #131322;
+  background: #1f2022;
 }
 
 img {
@@ -184,6 +184,10 @@ input {
   border: none;
   background: transparent;
   overflow: hidden;
+}
+textarea {
+  border: none;
+  background: transparent;
 }
 
 div {
